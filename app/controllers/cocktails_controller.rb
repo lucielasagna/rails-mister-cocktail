@@ -6,6 +6,7 @@ class CocktailsController < ApplicationController
 
     def show
       #@task = Task.find(params[:id])
+      @dose = Dose.new
     end
 
     def new

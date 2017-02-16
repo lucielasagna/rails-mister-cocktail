@@ -1,7 +1,15 @@
-<h1>Liste des cocktails</h1>
 
-<% @cocktails.each do |cocktail| %>
-  <h2><%= cocktail.name %></h2>
-  <%= link_to "See details", cocktail, class: "btn btn-primary"%>
-  <%= link_to "Add a review and a rating", new_cocktail_review_path(cocktail), class: "btn btn-primary"%>
-<% end %>
+
+<div class = 'text-right'>
+  <%= link_to "Add a cocktail", new_cocktail_url, class: "btn btn-primary"%>
+</div>
+
+<div class = 'liste_des_cocktails'>
+  <h1>Liste des cocktails</h1>
+  <% @cocktails.each do |cocktail| %>
+    <h2><%= cocktail.name %></h2>
+    <%= link_to "See details", cocktail, class: "btn btn-primary"%>
+  <% end %>
+</div>
+
+

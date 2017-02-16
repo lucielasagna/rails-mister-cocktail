@@ -1,4 +1,17 @@
-<h2><%= @cocktail.name %></h2>
-<% @cocktail.ingredients.each do |ingredient| %>
-  <p>Name:<%= ingredient.name %></p>
-<% end %>
+
+<div class = 'cocktails_show'>
+  <h2><%= @cocktail.name %></h2>
+  <% @cocktail.doses.each do |dose| %>
+    <p>Quantité:<%= dose.description %></p>
+    <p>Ingredient:<%= dose.ingredient.name %></p>
+  <% end %>
+</div>
+
+<div class = 'dose_form'>
+  <%= simple_form_for([@cocktail, @dose]) do |f| %>
+  <%= f.input :description %>
+  <%= f.association :ingredient %>
+  <%= f.submit %>
+  <% end %>
+</div>
+
