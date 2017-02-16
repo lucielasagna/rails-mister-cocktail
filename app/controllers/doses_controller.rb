@@ -9,13 +9,23 @@ class DosesController < ApplicationController
   end
 
   def new
-    @dose = Dose.new
+    @cocktail = Cocktail.find(params[:cocktail_id])
+    @dose = @cocktail.doses.new
   end
 
   def create
-    dose = Dose.new(dose_params)
-    dose.save
-  end
+      #@review = Review.new(review_params)
+      # we need `restaurant_id` to asssociate review with corresponding restaurant
+      #@review.restaurant = Restaurant.find(params[:restaurant_id])
+      #@review.save
+      @cocktail = Cocktail.find(params[:cocktail_id])
+      @dose = @cocktail.doses.new(dose_params)
+      if @dose.save
+        redirect_to @cocktail
+      else
+        render :new
+      end
+    end
 
   def edit
     #@task = Task.find(params[:id])
@@ -29,13 +39,13 @@ class DosesController < ApplicationController
   def destroy
     #@task = Task.find(params[:id])
     @dose.destroy
-    redirect_to doses_path
+    redirect_to dose_path
   end
 
   private
 
   def dose_params
-    params.require(:dose).permit(:description)
+    params.require(:dose).permit(:description, :ingredient_id)
   end
 
   def set_dose
