@@ -2,8 +2,9 @@
 <div class = 'cocktails_show'>
   <h2><%= @cocktail.name %></h2>
   <% @cocktail.doses.each do |dose| %>
-    <p>Quantité:<%= dose.description %></p>
-    <p>Ingredient:<%= dose.ingredient.name %></p>
+    <p>Quantité: <%= dose.description %></p>
+    <p>Ingredient: <%= dose.ingredient.name %></p>
+    <%= link_to "delete ingredient", dose_path(dose), class: "btn btn-primary", method: :delete %>
   <% end %>
 </div>
 
